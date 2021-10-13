@@ -1,0 +1,57 @@
+.toast-container > div {
+    opacity: 1 !important;
+}
+.swal2-icon{
+    width: 3em !important;
+    height: 3em !important;
+}
+.swal2-title{
+    font-size: 21px !important;
+}
+.swal2-content{
+    font-size: 15px !important;
+}
+.swal2-popup{
+    width: 335px !important;
+}
+.swal2-icon{
+    margin: 10px 15px !important;
+}
+.swal2-actions{
+    margin: .7em auto 0 !important;
+}
+.swal2-styled{
+    padding: 5px 25px !important;
+}
+
+td a i {
+    padding: 3px;
+}
+
+td a {
+    cursor: pointer;
+}
+
+h1.h3.mb-0.text-gray-800 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.table-responsive table thead tr th:last-child{
+    width: 15% !important;
+}
+
+
+.table-responsive table thead tr th:first-child{
+    width: 5% !important;
+}
+
+.sidebar .nav-item .nav-link[data-toggle="collapse"]::after{
+    content: '\f054';
+}
+a.nav-link{
+    cursor: pointer;
+}
+select, label > span{
+    cursor: pointer !important;
+}
