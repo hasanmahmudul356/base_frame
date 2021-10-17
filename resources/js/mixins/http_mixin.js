@@ -27,7 +27,7 @@ export default {
         },
         getDataList: function (page = 1) {
             const _this = this;
-            var data_params = Object.assign(this.filter, {per_page: _this.per_page, page: page});
+            var data_params = Object.assign(this.filter, _this.$store.state.filter, {page: page});
             this.$store.commit('httpRequest', true);
             _this.axios({method: "get", url: _this.urlGenerate(), params: data_params})
                 .then(function (response) {

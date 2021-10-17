@@ -1,7 +1,6 @@
 <template>
     <div>
         <page-top page-heading="Module List" modal-header="New Module" modal-id="formModal" button-text="New Configuration"></page-top>
-        <page-top page-heading="Configuration List" modal-header="Add new Configuration" modal-id="formModal" button-text="New Configuration"></page-top>
         <template>
             <div class="card shadow mb-4">
                 <div class="card-body">

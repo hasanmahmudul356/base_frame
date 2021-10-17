@@ -11,6 +11,7 @@ if (!function_exists('app_name')) {
         return $app_name;
     }
 }
+
 if (!function_exists('assets')) {
     function assets($filepath = '')
     {

@@ -24,7 +24,7 @@ class PermissionController extends Controller
             $query->where('name', 'Like', "%$keyword%");
         })
             ->with('permissions')
-            ->paginate(20);
+            ->paginate($this->perPage);
         return response()->json($this->returnData(2000, $users));
     }
 

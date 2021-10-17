@@ -2,7 +2,9 @@ export const state = {
     httpRequest: false,
     dataList: [],
     authUser: false,
-    filter: {},
+    filter: {
+        per_page : 20,
+    },
     Config: [],
     isConfigLoaded: false,
     requiredData: [],

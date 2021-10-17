@@ -16,37 +16,38 @@ const admin_routes = [
         children: [
             {
                 path: 'dashboard',
-                component: AdminDashboard
+                component: AdminDashboard,
+                meta : {dataUrl:'api/permissions', pageTitle:'Dashboard'}
             },
             {
                 path: 'permissions',
                 component: permissionList,
-                meta : {dataUrl:'api/permissions'}
+                meta : {dataUrl:'api/permissions',pageTitle:'Permissions'}
             },
             {
                 path: 'user',
                 component: userList,
-                meta : {dataUrl:'api/user'}
+                meta : {dataUrl:'api/user', pageTitle:'Users'}
             },
             {
                 path: 'role',
                 component: rolesList,
-                meta : {dataUrl:'api/role'}
+                meta : {dataUrl:'api/role', pageTitle:'Roles'}
             },
             {
                 path: 'module',
                 component: modulesList,
-                meta : {dataUrl:'api/module'}
+                meta : {dataUrl:'api/module', pageTitle:'Module List'}
             },
             {
                 path: 'role_module',
                 component: roleModuleList,
-                meta : {dataUrl:'api/role_module'}
+                meta : {dataUrl:'api/role_module', pageTitle:'Role Modules'}
             },
             {
                 path: 'configuration',
                 component: configurationList,
-                meta : {dataUrl:'api/settings'}
+                meta : {dataUrl:'api/settings', pageTitle:'Configurations'}
             },
             { path: '*', redirect: '/404' },
             { path: '/404', component: NotFound },

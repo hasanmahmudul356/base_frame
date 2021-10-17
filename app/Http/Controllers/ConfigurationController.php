@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
 use App\Models\Configuration;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class ConfigurationController extends Controller
@@ -19,7 +17,7 @@ class ConfigurationController extends Controller
         $datas = Configuration::when($keyword, function ($query) use ($keyword) {
             $query->where('name', 'Like', "%$keyword%");
         })
-            ->paginate(20);
+            ->paginate($this->perPage);
 
         return response()->json($this->returnData(2000, $datas));
     }

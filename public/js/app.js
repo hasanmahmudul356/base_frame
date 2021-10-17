@@ -3260,6 +3260,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "listFilter",
   methods: {
@@ -4419,7 +4420,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -5350,8 +5350,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var _this = this;
 
-      var data_params = Object.assign(this.filter, {
-        per_page: _this.per_page,
+      var data_params = Object.assign(this.filter, _this.$store.state.filter, {
         page: page
       });
       this.$store.commit('httpRequest', true);
@@ -5589,42 +5588,52 @@ var admin_routes = [{
   component: _views_admin_baseLayouts__WEBPACK_IMPORTED_MODULE_1__["default"],
   children: [{
     path: 'dashboard',
-    component: _views_admin_adminDashboard__WEBPACK_IMPORTED_MODULE_0__["default"]
+    component: _views_admin_adminDashboard__WEBPACK_IMPORTED_MODULE_0__["default"],
+    meta: {
+      dataUrl: 'api/permissions',
+      pageTitle: 'Dashboard'
+    }
   }, {
     path: 'permissions',
     component: _views_rbac_permission_permissionList__WEBPACK_IMPORTED_MODULE_2__["default"],
     meta: {
-      dataUrl: 'api/permissions'
+      dataUrl: 'api/permissions',
+      pageTitle: 'Permissions'
     }
   }, {
     path: 'user',
     component: _views_rbac_users_userList__WEBPACK_IMPORTED_MODULE_4__["default"],
     meta: {
-      dataUrl: 'api/user'
+      dataUrl: 'api/user',
+      pageTitle: 'Users'
     }
   }, {
     path: 'role',
     component: _views_rbac_roles_rolesList__WEBPACK_IMPORTED_MODULE_5__["default"],
     meta: {
-      dataUrl: 'api/role'
+      dataUrl: 'api/role',
+      pageTitle: 'Roles'
     }
   }, {
     path: 'module',
     component: _views_rbac_modules_modulesList__WEBPACK_IMPORTED_MODULE_6__["default"],
     meta: {
-      dataUrl: 'api/module'
+      dataUrl: 'api/module',
+      pageTitle: 'Module List'
     }
   }, {
     path: 'role_module',
     component: _views_rbac_role_module_roleModuleList__WEBPACK_IMPORTED_MODULE_7__["default"],
     meta: {
-      dataUrl: 'api/role_module'
+      dataUrl: 'api/role_module',
+      pageTitle: 'Role Modules'
     }
   }, {
     path: 'configuration',
     component: _views_configuration_configurationList__WEBPACK_IMPORTED_MODULE_8__["default"],
     meta: {
-      dataUrl: 'api/settings'
+      dataUrl: 'api/settings',
+      pageTitle: 'Configurations'
     }
   }, {
     path: '*',
@@ -5796,7 +5805,9 @@ var state = {
   httpRequest: false,
   dataList: [],
   authUser: false,
-  filter: {},
+  filter: {
+    per_page: 20
+  },
   Config: [],
   isConfigLoaded: false,
   requiredData: [],
@@ -33458,16 +33469,13 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.per_page,
-                    expression: "per_page"
+                    value: _vm.$store.state.filter.per_page,
+                    expression: "$store.state.filter.per_page"
                   }
                 ],
                 staticClass:
                   "custom-select custom-select-sm form-control form-control-sm",
-                attrs: {
-                  name: "dataTable_length",
-                  "aria-controls": "dataTable"
-                },
+                attrs: { name: "dataTable_length" },
                 on: {
                   change: function($event) {
                     var $$selectedVal = Array.prototype.filter
@@ -33478,14 +33486,18 @@ var render = function() {
                         var val = "_value" in o ? o._value : o.value
                         return val
                       })
-                    _vm.per_page = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
+                    _vm.$set(
+                      _vm.$store.state.filter,
+                      "per_page",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
                   }
                 }
               },
               [
                 _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "20" } }, [_vm._v("20")]),
                 _vm._v(" "),
                 _c("option", { attrs: { value: "25" } }, [_vm._v("25")]),
                 _vm._v(" "),
@@ -35520,15 +35532,6 @@ var render = function() {
         attrs: {
           "page-heading": "Module List",
           "modal-header": "New Module",
-          "modal-id": "formModal",
-          "button-text": "New Configuration"
-        }
-      }),
-      _vm._v(" "),
-      _c("page-top", {
-        attrs: {
-          "page-heading": "Configuration List",
-          "modal-header": "Add new Configuration",
           "modal-id": "formModal",
           "button-text": "New Configuration"
         }

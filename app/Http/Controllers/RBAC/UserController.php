@@ -20,7 +20,7 @@ class UserController extends Controller
             $query->where('name', 'Like', "%$keyword%");
         })
             ->with('role')
-            ->paginate(20);
+            ->paginate($this->perPage);
         return response()->json($this->returnData(2000, $users));
     }
 

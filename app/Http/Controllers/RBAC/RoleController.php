@@ -20,7 +20,7 @@ class RoleController extends Controller
 
         $users = Role::when($keyword, function ($query) use ($keyword) {
             $query->where('name', 'Like', "%$keyword%");
-        })->paginate(20);
+        })->paginate($this->perPage);
 
         return response()->json($this->returnData(2000, $users));
     }

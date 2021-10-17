@@ -24,7 +24,6 @@ class RoleModuleController extends Controller
         $all_modules = Module::with('permissions')->whereNotIn('id', $role_modules)->get();
 
         $permitted_modules = Module::whereIn('id', $role_modules)
-//            ->with(['role_module.permissions'])
             ->with(['role_module'=>function($query) use ($request){
                 $query->where('role_id', $request->role_id)
                 ->with('permissions');
