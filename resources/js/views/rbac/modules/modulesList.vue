@@ -1,6 +1,10 @@
 <template>
     <div>
-        <page-top page-heading="Module List" modal-header="New Module" modal-id="formModal" button-text="New Configuration"></page-top>
+        <page-top page-heading="Module List" modal-header="New Module" modal-id="formModal" button-text="New Configuration" :default-button="false">
+            <button v-if="can('add')" @click="addModule()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <i class="fa fa-plus fa-sm text-white-50"></i>Add Module
+            </button>
+        </page-top>
         <template>
             <div class="card shadow mb-4">
                 <div class="card-body">

@@ -9,7 +9,7 @@
             </h1>
         </div>
         <div class="col-6 text-right">
-            <button v-if="can('add')" @click="openModal(modalId, modalHeader)" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <button v-if="can('add') && defaultButton"  @click="openModal(modalId, modalHeader)" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fa fa-plus fa-sm text-white-50"></i>{{buttonText}}
             </button>
             <slot></slot>
@@ -25,6 +25,10 @@
                 type: String,
                 default: 'Dashboard'
             },
+            defaultButton: {
+                type: Boolean,
+                default: true
+            },
             modalId: {
                 type: String,
                 default: 'formModal'
@@ -38,7 +42,9 @@
                 default: 'Add New'
             }
         },
+
         mounted() {
+
         }
     }
 </script>
